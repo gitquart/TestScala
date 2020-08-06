@@ -1,9 +1,7 @@
 
 import java.nio.file.Paths
 import com.datastax.oss.driver.api.core.CqlSessionBuilder
-
-
-
+import com.datastax.oss.driver.api.core.cql._
 
 object objectTest extends App{
 
@@ -13,14 +11,13 @@ object objectTest extends App{
     .withKeyspace("thesis")
     .build()
 
-  if (session.isClosed) {
-    println("Connection is closed")
+  val query="select id_thesis from thesis.tbthesis where period_number=10"
 
-  }else{
-    println("Hurra, is open!")
-  }
+  val rs:ResultSet= session.execute(query)
 
-  //val query="select id_thesis from thesis.tbthesis where period_number=10"
+  println("ok")
+
+
 
 }
 
