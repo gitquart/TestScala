@@ -3,10 +3,20 @@ import java.time.Duration
 import java.util.function.Consumer
 import com.datastax.oss.driver.api.core.CqlSessionBuilder
 import com.datastax.oss.driver.api.core.cql.{Row, SimpleStatementBuilder}
+import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
 
 object objectTest extends App{
+
+  //Spark
+
+  val conf = new SparkConf()
+  conf.setMaster("local")
+      .setAppName("appSparkCassandra")
+
+  val sc= new SparkContext(conf)
+
+  val rdd1= sc.makeRDD(Array(1,2,3))
 
   val currentDirectory:String = System.getProperty("user.dir")
   var session = new CqlSessionBuilder()
