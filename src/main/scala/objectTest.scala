@@ -8,9 +8,10 @@ import org.apache.spark.SparkContext._
 
 object objectTest extends App{
 
+  val currentDirectory:String = System.getProperty("user.dir")
   var session = new CqlSessionBuilder()
     .withAuthCredentials("quartadmin", "P@ssw0rd33")
-    .withCloudSecureConnectBundle(Paths.get("C:\\Users\\UlysesRico\\IdeaProjects\\proScalaTest\\secure-connect-dbquart.zip"))
+    .withCloudSecureConnectBundle(Paths.get(currentDirectory+"\\secure-connect-dbquart.zip"))
     .withKeyspace("thesis")
     .build()
 
