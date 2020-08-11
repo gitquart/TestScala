@@ -9,7 +9,7 @@ import org.apache.spark.SparkContext
 object objectTest extends App{
 
   //Spark
-
+/*
   val conf = new SparkConf()
   conf.setMaster("local")
       .setAppName("appSparkCassandra")
@@ -22,6 +22,8 @@ object objectTest extends App{
   val rdd2= sc.makeRDD(lst2)
 
 
+ */
+
   val currentDirectory:String = System.getProperty("user.dir")
   var session = new CqlSessionBuilder()
     .withAuthCredentials("quartadmin", "P@ssw0rd33")
@@ -29,7 +31,7 @@ object objectTest extends App{
     .withKeyspace("thesis")
     .build()
 
-  var query="select id_thesis, period_number from thesis.tbthesis where period_number>4 ALLOW FILTERING"
+  var query="select * from thesis.tbthesis where period_number>4 ALLOW FILTERING"
 
   //With 2 mins of TimeOut I got the 5th period complete
   //With 1 min of Time Out I got the whole database
@@ -42,12 +44,13 @@ object objectTest extends App{
 
   var contar:Int=0
 
+  println("Go...")
   session.execute(st).forEach(new Consumer[Row] (){
 
     override def accept(row: Row): Unit = {
 
       contar+=1
-      println(row.getFormattedContents())
+      //println(row.getFormattedContents())
       println(contar.toString)
     }
   })
