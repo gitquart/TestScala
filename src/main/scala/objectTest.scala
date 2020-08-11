@@ -1,8 +1,10 @@
 import java.nio.file.Paths
 import java.time.Duration
+import java.util.function.Consumer
 import com.datastax.oss.driver.api.core.CqlSessionBuilder
 import com.datastax.oss.driver.api.core.cql.{Row, SimpleStatementBuilder}
-import java.util.function.Consumer
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext._
 
 object objectTest extends App{
 
@@ -32,9 +34,6 @@ object objectTest extends App{
       contar+=1
       println(row.getFormattedContents())
       println(contar.toString)
-
-
-
     }
   })
 
