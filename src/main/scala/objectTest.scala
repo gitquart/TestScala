@@ -16,7 +16,11 @@ object objectTest extends App{
 
   val sc= new SparkContext(conf)
 
-  val rdd1= sc.makeRDD(Array(1,2,3))
+  val lst:List[String]= List("hello","there")
+  val lst2:List[String]=List("hhh","popopo")
+  val rdd1= sc.makeRDD(lst)
+  val rdd2= sc.makeRDD(lst2)
+
 
   val currentDirectory:String = System.getProperty("user.dir")
   var session = new CqlSessionBuilder()
