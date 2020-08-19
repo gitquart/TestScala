@@ -5,6 +5,7 @@ import com.datastax.oss.driver.api.core.CqlSessionBuilder
 import com.datastax.oss.driver.api.core.cql.{Row, SimpleStatementBuilder}
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
+import java.util.Calendar
 
 object objectTest extends App{
 
@@ -26,12 +27,12 @@ object objectTest extends App{
 
   val currentDirectory:String = System.getProperty("user.dir")
   var session = new CqlSessionBuilder()
-    .withAuthCredentials("quartadmin", "P@ssw0rd33")
-    .withCloudSecureConnectBundle(Paths.get(currentDirectory+"\\secure-connect-dbquart.zip"))
-    .withKeyspace("thesis")
+    .withAuthCredentials("test", "testquart")
+    .withCloudSecureConnectBundle(Paths.get(currentDirectory+"\\secure-connect-dbtest.zip"))
+    .withKeyspace("test")
     .build()
 
-  var query="select * from thesis.tbthesis where period_number>4 ALLOW FILTERING"
+  var query="select * from test.tbthesis where period_number>4 ALLOW FILTERING"
 
   //With 2 mins of TimeOut I got the 5th period complete
   //With 1 min of Time Out I got the whole database
@@ -43,18 +44,19 @@ object objectTest extends App{
 
 
   var contar:Int=0
+  print("Start:"+Calendar.getInstance.getTime.toString)
 
-  println("Go...")
   session.execute(st).forEach(new Consumer[Row] (){
 
     override def accept(row: Row): Unit = {
 
       contar+=1
       //println(row.getFormattedContents())
-      println(contar.toString)
+
     }
   })
-
+  println(contar.toString)
+  print("End:"+Calendar.getInstance.getTime.toString)
   println("DONE")
 }
 
