@@ -14,6 +14,7 @@
         <scala.version.minor>12</scala.version.minor>
         <scala.version>${scala.version.major}.${scala.version.minor}</scala.version>
         <driver.version>4.8.0</driver.version>
+        <dse.version>6.0.0</dse.version>
     </properties>
 
     <dependencies>
@@ -61,7 +62,15 @@
             <artifactId>java-driver-mapper-runtime</artifactId>
             <version>${driver.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.datastax.spark</groupId>
+            <artifactId>spark-cassandra-connector_2.12</artifactId>
+            <version>3.0.0-beta</version>
+        </dependency>
+
+
     </dependencies>
+
 
     <build>
         <plugins>
