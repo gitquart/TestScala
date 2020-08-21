@@ -6,31 +6,23 @@ import com.datastax.oss.driver.api.core.cql.{Row, SimpleStatementBuilder}
 import java.util.Calendar
 import com.datastax.spark.connector._
 
-
-
 object objectTest extends App{
 
   val currentDirectory:String = System.getProperty("user.dir")
 
-
-  //Spark
-/*
-  val conf = new SparkConf(true)
-    .set("spark.cassandra.connection.host", "127.0.0.1")
-  val sc = new SparkContext("dse://127.0.0.1:7077", "test", conf)
-  val rdd = sc.cassandraTable("my_keyspace", "my_table")
-
-
- */
-
-
-  /*
-  Datastax connection only
+  //This is for Cassandra Datastax, it may work for spark as well
   var session = new CqlSessionBuilder()
     .withAuthCredentials("test", "testquart")
     .withCloudSecureConnectBundle(Paths.get(currentDirectory+"\\secure-connect-dbtest.zip"))
     .withKeyspace("test")
     .build()
+
+  //Spark
+
+
+  /*
+  Datastax connection only
+
 
   var query="select * from test.tbthesis where period_number>4 ALLOW FILTERING"
 
